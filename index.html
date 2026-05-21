@@ -478,6 +478,159 @@
   }
   .ticks span{white-space:nowrap}
 
+  /* ===== Detours & Reservations ===== */
+  .detours{
+    margin-top:44px;
+    border:1px solid var(--ink);
+    background:var(--paper);
+  }
+  .detours-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px 22px;
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .detours-head .title-l{
+    font-family:"Alfa Slab One", serif;
+    font-size:22px;letter-spacing:.005em;line-height:1;
+  }
+  .detours-head .sub-l{
+    font-family:"DM Mono", monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#e6dfd0;
+  }
+  .detours-table{
+    display:grid;
+    grid-template-columns: 26px 1.4fr 1.6fr 1.1fr;
+    align-items:stretch;
+  }
+  .detours-table .th,
+  .detours-table .td{
+    padding:10px 14px;
+    border-bottom:1px solid rgba(31,26,23,.18);
+    font-family:"DM Sans", sans-serif;
+    font-size:13px;
+    color:var(--ink);
+    display:flex;align-items:center;
+    min-width:0;
+  }
+  .detours-table .th{
+    background:var(--paper-2);
+    font-family:"DM Mono", monospace;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);
+    border-bottom:1px solid var(--ink);
+  }
+  .detours-table .row{display:contents}
+  .detours-table .pin{
+    display:flex;align-items:center;justify-content:center;
+    padding:10px 0;
+    border-bottom:1px solid rgba(31,26,23,.18);
+    background:var(--paper-2);
+  }
+  .detours-table .pin .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--brick);
+    border:1.5px solid var(--ink);
+  }
+  .detours-table .stop-name{
+    font-family:"Alfa Slab One", serif;
+    font-size:14px;letter-spacing:.005em;line-height:1.1;
+  }
+  .detours-table .stop-name .city{
+    display:block;
+    font-family:"DM Mono", monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);
+    margin-top:4px;
+    font-weight:400;
+  }
+  .detours-table .addr{
+    font-family:"DM Sans", sans-serif;font-weight:500;font-size:12.5px;color:var(--ink-2);line-height:1.3;
+  }
+  .detours-table .todo{
+    font-family:"DM Mono", monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;
+    line-height:1.2;
+  }
+  .detours-table .todo .pill{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 9px;
+    background:var(--brick);color:#fff;
+    border-radius:99px;
+    font-size:9.5px;letter-spacing:.2em;
+  }
+  .detours-table .todo .pill.muted{
+    background:transparent;color:var(--ink-2);
+    border:1px dashed rgba(31,26,23,.35);
+  }
+  .detours-table .todo .check{width:9px;height:9px;border:1.5px solid currentColor}
+  .detours-table .row:last-child .th,
+  .detours-table .row:last-child .td,
+  .detours-table .row:last-child .pin{border-bottom:none}
+  .detours-foot{
+    padding:12px 22px;
+    background:var(--paper-2);
+    font-family:"DM Sans", sans-serif;
+    font-size:12px;
+    color:var(--ink-2);
+    border-top:1px solid var(--ink);
+    line-height:1.4;
+  }
+  .detours-foot b{color:var(--brick);font-family:"DM Mono", monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-right:6px}
+
+  /* ===== Detour list inside day card ===== */
+  .detour-list{
+    padding:14px 24px 18px;
+    background:var(--paper);
+    border-top:1px solid rgba(31,26,23,.18);
+  }
+  .detour-list .dl-head{
+    display:flex;align-items:center;gap:10px;
+    font-family:"DM Mono", monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--brick);
+    margin-bottom:10px;
+  }
+  .detour-list .dl-head .line{flex:1;height:1px;background:rgba(31,26,23,.2)}
+  .detour-list .item{
+    display:grid;
+    grid-template-columns: 20px 1.2fr 1.6fr auto;
+    align-items:center;
+    gap:14px;
+    padding:8px 0;
+    border-bottom:1px dashed rgba(31,26,23,.18);
+  }
+  .detour-list .item:last-child{border-bottom:none}
+  .detour-list .item .marker{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--brick);border:1.5px solid var(--ink);
+    justify-self:center;
+  }
+  .detour-list .item .stop-name{
+    font-family:"Alfa Slab One", serif;
+    font-size:13px;line-height:1.1;
+  }
+  .detour-list .item .stop-name .city{
+    display:block;
+    font-family:"DM Mono", monospace;
+    font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);
+    margin-top:3px;
+  }
+  .detour-list .item .addr{
+    font-family:"DM Sans", sans-serif;font-weight:500;font-size:12px;color:var(--ink-2);line-height:1.3;
+  }
+  .detour-list .item .pill{
+    display:inline-flex;align-items:center;
+    padding:5px 10px;
+    background:var(--brick);color:#fff;
+    border-radius:99px;
+    font-family:"DM Mono", monospace;
+    font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .detour-list .item .pill.muted{
+    background:transparent;color:var(--ink-2);
+    border:1px dashed rgba(31,26,23,.35);
+  }
+
   /* ===== Print ===== */
   @page { size: Letter portrait; margin: 0.4in; }
   @media print{
@@ -648,6 +801,15 @@
           <div class="addr" style="margin-top:8px">Pull in, hug the college crew, meet the babies and the little kids. Then head into Iowa City for some pizza and a proper night out catching up.</div>
         </div>
       </div>
+      <div class="detour-list">
+        <div class="dl-head"><span>Detours · Iowa City</span><span class="line"></span></div>
+        <div class="item">
+          <div class="marker"></div>
+          <div class="stop-name">TKE Lambda Eta House<span class="city">Iowa City, IA</span></div>
+          <div class="addr">302 Ridgeland Ave, Fraternity Circle</div>
+          <div class="pill muted">No Booking</div>
+        </div>
+      </div>
     </article>
 
     <!-- DAY 2 -->
@@ -727,6 +889,27 @@
           <div class="addr">6020 Jefferson Dr, Independence, OH 44131</div>
         </div>
       </div>
+      <div class="detour-list">
+        <div class="dl-head"><span>Detours · Lunch Stop &amp; Cleveland Evening</span><span class="line"></span></div>
+        <div class="item">
+          <div class="marker"></div>
+          <div class="stop-name">Portillo's<span class="city">Crestwood, IL · lunch en route</span></div>
+          <div class="addr">13130 S. Cicero Ave, Crestwood, IL 60445</div>
+          <div class="pill">Confirm w/ Friends</div>
+        </div>
+        <div class="item">
+          <div class="marker"></div>
+          <div class="stop-name">The Jury Experience<span class="city">Cleveland, OH · evening show</span></div>
+          <div class="addr">Maltz Performing Arts Center · 1855 Ansel Rd</div>
+          <div class="pill">Confirm Tickets</div>
+        </div>
+        <div class="item">
+          <div class="marker"></div>
+          <div class="stop-name">La Dolce Vita<span class="city">Cleveland, OH · dinner</span></div>
+          <div class="addr">Little Italy, University Circle · ~5 min walk from Maltz</div>
+          <div class="pill">Book Reservation</div>
+        </div>
+      </div>
     </article>
 
     <!-- DAY 3 -->
@@ -804,6 +987,15 @@
           <div class="kicker">Tonight's Stop · Check In</div>
           <div class="name">Homewood Suites by Hilton East Rutherford – Meadowlands</div>
           <div class="addr">125 Route 17 S, East Rutherford, NJ 07073</div>
+        </div>
+      </div>
+      <div class="detour-list">
+        <div class="dl-head"><span>Detour · Welcome-to-NYC Dinner</span><span class="line"></span></div>
+        <div class="item">
+          <div class="marker"></div>
+          <div class="stop-name">Prohibition<span class="city">Manhattan, NY · Upper West Side</span></div>
+          <div class="addr">503 Columbus Ave, UWS · hop across the river for dinner</div>
+          <div class="pill">Book on Resy</div>
         </div>
       </div>
     </article>
