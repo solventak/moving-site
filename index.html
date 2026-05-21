@@ -2,41 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Denver → Manhattan · One Page Itinerary</title>
-<meta name="viewport" content="width=900" />
+<title>Denver → Manhattan · Road Trip Itinerary</title>
+<meta name="viewport" content="width=1200" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#ffffff;
-    --paper-2:#f6f3ec;
+    --paper-2:#f4f1ea;
     --ink:#1f1a17;
     --ink-2:#4a3f37;
-    --ink-3:#7a6e63;
+    --rule:#1f1a17;
     --brick:#b8361f;
+    --brick-deep:#8a2818;
     --navy:#1f3a5f;
+    --olive:#6b6a2a;
+    --mustard:#d39a1a;
+    --shadow:0 1px 0 rgba(31,26,23,.08);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:#e7e3da;color:var(--ink);font-family:"DM Sans", system-ui, sans-serif;-webkit-font-smoothing:antialiased}
-  body{padding:24px 16px 60px;display:flex;justify-content:center}
-
-  /* ===== Letter portrait page ===== */
-  .page{
-    width:8.5in;
-    height:11in;
+  html,body{margin:0;padding:0;background:#ffffff;color:var(--ink);font-family:"DM Sans", system-ui, sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    padding:48px 24px 80px;
+  }
+  .poster{
+    max-width:1100px;
+    margin:0 auto;
     background:var(--paper);
     border:1px solid var(--ink);
-    padding:0.45in 0.5in 0.4in;
+    padding:56px 64px 64px;
     position:relative;
     overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    box-shadow: 0 30px 60px -30px rgba(31,26,23,.35);
   }
-  .page::after{
+  .poster::after{
     content:"";
-    position:absolute;inset:0.18in;
+    position:absolute;inset:14px;
     border:1px solid rgba(31,26,23,.35);
     pointer-events:none;
   }
@@ -44,298 +45,463 @@
   /* ===== Masthead ===== */
   .masthead{
     text-align:center;
-    padding-bottom:10px;
-    border-bottom:2.5px double var(--ink);
-    flex:0 0 auto;
+    position:relative;
+    padding-bottom:28px;
+    border-bottom:3px double var(--ink);
   }
   .eyebrow{
     font-family:"DM Mono", monospace;
-    font-size:8.5px;
+    font-size:11px;
     letter-spacing:.32em;
     text-transform:uppercase;
     color:var(--ink-2);
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    margin-bottom:6px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin-bottom:18px;
   }
-  .eyebrow .star{width:6px;height:6px;background:var(--brick);transform:rotate(45deg)}
-  .eyebrow .rule{flex:0 0 36px;height:1px;background:var(--ink)}
+  .eyebrow .star{width:8px;height:8px;background:var(--brick);transform:rotate(45deg)}
+  .eyebrow .rule{flex:0 0 60px;height:1px;background:var(--ink)}
   .title{
     font-family:"Alfa Slab One", serif;
     font-weight:400;
-    font-size:46px;
+    font-size:84px;
     line-height:.95;
     margin:0;
-    letter-spacing:-.005em;
+    letter-spacing:-.01em;
     color:var(--ink);
   }
-  .title .arrow{color:var(--brick); display:inline-block; transform:translateY(-3px); margin:0 10px; font-family:"DM Sans", sans-serif; font-weight:700;}
+  .title .arrow{color:var(--brick); display:inline-block; transform:translateY(-6px); margin:0 18px; font-family:"DM Sans", sans-serif; font-weight:700;}
   .subtitle{
-    margin-top:8px;
+    margin-top:18px;
     font-family:"DM Sans", sans-serif;
     font-weight:500;
-    font-size:11px;
-    letter-spacing:.18em;
+    font-size:15px;
+    letter-spacing:.12em;
     text-transform:uppercase;
     color:var(--ink-2);
   }
   .subtitle span{color:var(--brick); font-weight:700}
 
-  /* ===== Route map ===== */
+  /* ===== Route map strip ===== */
   .routemap{
-    margin:12px 0 4px;
-    padding:14px 4px 4px;
-    flex:0 0 auto;
+    margin:36px 0 8px;
+    padding:28px 8px 14px;
+    position:relative;
   }
-  .routemap .road{position:relative;height:38px}
-  .routemap svg.path{display:block;width:100%;height:38px}
+  .routemap .road{
+    position:relative;
+    height:60px;
+  }
+  .routemap svg.path{
+    display:block;
+    width:100%;
+    height:60px;
+  }
   .routemap .stops{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    margin-top:-28px;
+    margin-top:-46px;
     position:relative;
     z-index:2;
   }
-  .stop{flex:0 0 auto;text-align:center;width:90px}
+  .stop{
+    flex:0 0 auto;
+    text-align:center;
+    width:120px;
+  }
   .stop .dot{
-    width:14px;height:14px;border-radius:50%;
+    width:22px;height:22px;border-radius:50%;
     background:#fff;
-    border:2.5px solid var(--ink);
-    margin:0 auto 6px;
+    border:3px solid var(--ink);
+    margin:0 auto 10px;
+    position:relative;
   }
   .stop.start .dot, .stop.end .dot{
     background:var(--brick);
-    width:18px;height:18px;
-    box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--ink);
+    border-color:var(--ink);
+    width:26px;height:26px;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--ink);
     margin-top:-2px;
-    margin-bottom:5px;
   }
-  .stop .city{font-family:"Alfa Slab One", serif;font-size:11px;letter-spacing:.01em;line-height:1}
-  .stop .state{font-family:"DM Mono", monospace;font-size:7.5px;letter-spacing:.18em;color:var(--ink-2);text-transform:uppercase;margin-top:2px}
-  .stop .date{font-family:"DM Mono", monospace;font-size:7.5px;letter-spacing:.16em;color:var(--brick);margin-top:3px;text-transform:uppercase}
+  .stop .city{
+    font-family:"Alfa Slab One", serif;
+    font-size:15px;
+    letter-spacing:.02em;
+  }
+  .stop .state{
+    font-family:"DM Mono", monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .stop .date{
+    font-family:"DM Mono", monospace;
+    font-size:10px;
+    letter-spacing:.14em;
+    color:var(--brick);
+    margin-top:6px;
+    text-transform:uppercase;
+  }
 
-  /* ===== Day rows ===== */
+  /* ===== Day card ===== */
   .days{
-    margin-top:12px;
+    margin-top:44px;
     display:flex;
     flex-direction:column;
-    gap:10px;
-    flex:1 1 auto;
-    min-height:0;
+    gap:32px;
   }
   .day{
     border:1px solid var(--ink);
     background:var(--paper);
-    display:grid;
-    grid-template-columns: 64px 1.7fr 2.1fr 2.2fr;
-    align-items:stretch;
-    overflow:hidden;
-    flex:1 1 0;
-    min-height:0;
+    position:relative;
   }
-  .day .badge{
+  .day-head{
+    display:flex;
+    align-items:stretch;
+    border-bottom:1px solid var(--ink);
+  }
+  .badge{
+    flex:0 0 130px;
     background:var(--ink);
     color:var(--paper);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:6px 2px;
+    text-align:center;
+    padding:14px 8px;
     border-right:1px solid var(--ink);
   }
-  .day .badge .day-num{font-family:"Alfa Slab One", serif;font-size:26px;line-height:1}
-  .day .badge .day-mo{font-family:"DM Mono", monospace;font-size:8.5px;letter-spacing:.18em;margin-top:4px;color:#e6dfd0}
-  .day.holiday .badge{background:var(--brick)}
-
-  .day-head{
-    padding:10px 12px;
-    display:flex;flex-direction:column;justify-content:center;
-    border-right:1px solid rgba(31,26,23,.18);
-    min-width:0;
+  .badge .day-num{
+    font-family:"Alfa Slab One", serif;
+    font-size:42px;
+    line-height:1;
   }
-  .day-head .dow{
+  .badge .day-mo{
     font-family:"DM Mono", monospace;
-    font-size:9px;
+    font-size:10px;
+    letter-spacing:.24em;
+    margin-top:6px;
+    color:var(--paper-2);
+  }
+  .head-main{
+    flex:1;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    background:var(--paper);
+  }
+  .head-left .dow{
+    font-family:"DM Mono", monospace;
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--brick);
+  }
+  .head-left h2{
+    font-family:"Alfa Slab One", serif;
+    font-weight:400;
+    font-size:30px;
+    margin:4px 0 0;
+    line-height:1;
+    letter-spacing:.005em;
+  }
+  .head-right{
+    text-align:right;
+    font-family:"DM Mono", monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+  }
+  .head-right strong{
+    display:block;
+    font-family:"Alfa Slab One", serif;
+    font-size:20px;
+    letter-spacing:.02em;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+
+  /* leg row */
+  .leg{
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    gap:18px;
+    padding:22px 24px;
+    border-bottom:1px solid rgba(31,26,23,.18);
+  }
+  .leg.no-border{border-bottom:none}
+  .endpoint{
+    display:flex;align-items:center;gap:14px;
+  }
+  .endpoint.right{justify-content:flex-end; text-align:right}
+  .endpoint .marker{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    display:grid;place-items:center;
+    flex:0 0 36px;
+  }
+  .endpoint.right{flex-direction:row-reverse}
+  .endpoint .marker svg{width:18px;height:18px}
+  .endpoint .label{display:flex;flex-direction:column}
+  .endpoint .time{
+    font-family:"DM Mono", monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--brick);
+    text-transform:uppercase;
+  }
+  .endpoint .place{
+    font-family:"Alfa Slab One", serif;
+    font-size:22px;
+    line-height:1.05;
+    margin-top:2px;
+  }
+  .endpoint .sub{
+    font-family:"DM Mono", monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+    margin-top:3px;
+  }
+
+  .leg-mid{
+    min-width:300px;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .leg-line{
+    width:100%;
+    height:28px;
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .leg-line::before, .leg-line::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    height:2px;
+    background:repeating-linear-gradient(to right, var(--ink) 0 8px, transparent 8px 14px);
+    width:calc(50% - 26px);
+  }
+  .leg-line::before{left:0}
+  .leg-line::after{right:0}
+  .truck{
+    width:44px;height:28px;
+    display:grid;place-items:center;
+    background:var(--paper);
+    z-index:1;
+  }
+  .truck svg{width:36px;height:24px;color:var(--brick)}
+  .leg-stat{
+    margin-top:6px;
+    display:flex;gap:18px;align-items:center;
+    font-family:"DM Mono", monospace;
+    font-size:11px;
+    letter-spacing:.16em;
+    color:var(--ink);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .leg-stat span{white-space:nowrap}
+  .leg-stat .pipe{color:var(--brick)}
+  .leg-route{
+    margin-top:6px;
+    font-family:"DM Mono", monospace;
+    font-size:10px;
+    letter-spacing:.22em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+    white-space:nowrap;
+    text-align:center;
+  }
+  .leg-route .shield{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--navy);
+    color:#f8e9c8;
+    font-family:"Alfa Slab One", serif;
+    font-size:10px;
+    padding:2px 6px;
+    border-radius:3px 3px 8px 8px;
+    margin:0 4px;
+    letter-spacing:.04em;
+    border:1px solid #f8e9c8;
+    box-shadow: 0 0 0 1px var(--navy);
+  }
+
+  /* lodging / notes */
+  .note{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    padding:18px 24px;
+    background:var(--paper-2);
+    border-top:1px solid rgba(31,26,23,.18);
+  }
+  .note .ico{
+    flex:0 0 40px;
+    width:40px;height:40px;border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    display:grid;place-items:center;
+  }
+  .note .ico svg{width:20px;height:20px;color:var(--ink)}
+  .note .body{flex:1}
+  .note .kicker{
+    font-family:"DM Mono", monospace;
+    font-size:10px;
     letter-spacing:.24em;
     color:var(--brick);
     text-transform:uppercase;
   }
-  .day-head h2{
-    font-family:"Alfa Slab One", serif;
-    font-weight:400;
-    font-size:16px;
-    margin:4px 0 0;
-    line-height:1.1;
-    letter-spacing:.005em;
-  }
-  .day-head .stat{
-    margin-top:7px;
-    font-family:"DM Mono", monospace;
-    font-size:9.5px;
-    letter-spacing:.16em;
-    color:var(--ink-2);
-    text-transform:uppercase;
-  }
-  .day-head .stat b{color:var(--ink);font-family:"Alfa Slab One", serif;font-size:12.5px;letter-spacing:.02em;margin-right:5px}
-
-  /* leg cell */
-  .leg{
-    padding:10px 12px;
-    display:flex;flex-direction:column;justify-content:center;gap:5px;
-    border-right:1px solid rgba(31,26,23,.18);
-    min-width:0;
-  }
-  .leg .route{
-    display:flex;align-items:center;gap:7px;
-    font-family:"Alfa Slab One", serif;
-    font-size:12.5px;line-height:1.05;
-    flex-wrap:nowrap;
-  }
-  .leg .route .arrow{color:var(--brick)}
-  .leg .truck{flex:0 0 28px;color:var(--brick)}
-  .leg .truck svg{width:28px;height:16px;display:block}
-  .leg .times{
-    font-family:"DM Mono", monospace;font-size:9px;letter-spacing:.16em;color:var(--ink-2);text-transform:uppercase;
-    white-space:nowrap;
-  }
-  .leg .via{
-    font-family:"DM Mono", monospace;font-size:9px;letter-spacing:.18em;color:var(--ink-2);text-transform:uppercase;
-    white-space:nowrap;
-  }
-  .leg .via .shield{
-    display:inline-flex;align-items:center;justify-content:center;
-    background:var(--navy);color:#f8e9c8;
-    font-family:"Alfa Slab One", serif;font-size:9px;
-    padding:1px 5px;
-    border-radius:2px 2px 5px 5px;
-    margin:0 2px;
-    letter-spacing:.04em;
-    border:1px solid #f8e9c8;
-    box-shadow:0 0 0 1px var(--navy);
-  }
-
-  /* note cell */
-  .note{
-    padding:10px 12px;
-    display:flex;align-items:center;gap:10px;
-    background:var(--paper-2);
-    min-width:0;
-  }
-  .note .ico{
-    flex:0 0 30px;width:30px;height:30px;border-radius:50%;
-    background:#fff;border:1.5px solid var(--ink);
-    display:grid;place-items:center;
-  }
-  .note .ico svg{width:16px;height:16px;color:var(--ink)}
-  .note.final .ico{background:var(--brick);color:var(--paper);border-color:var(--ink)}
-  .note.final .ico svg{color:var(--paper)}
-  .note .body{flex:1;min-width:0}
-  .note .kicker{
-    font-family:"DM Mono", monospace;
-    font-size:8.5px;
-    letter-spacing:.22em;
-    color:var(--brick);
-    text-transform:uppercase;
-    line-height:1;
-  }
   .note .name{
     font-family:"Alfa Slab One", serif;
-    font-size:12.5px;
+    font-size:18px;
+    margin-top:3px;
+  }
+  .note .addr{
+    font-family:"DM Sans", sans-serif;
+    font-weight:500;
+    font-size:13px;
+    color:var(--ink-2);
+    margin-top:4px;
+    letter-spacing:.01em;
+  }
+
+  /* final / arrival */
+  .arrival{
+    padding:28px 24px;
+    text-align:center;
+    background:var(--paper);
+  }
+  .arrival .ico{
+    width:54px;height:54px;border-radius:50%;
+    background:var(--brick);
+    border:2px solid var(--ink);
+    margin:0 auto 12px;
+    display:grid;place-items:center;
+    color:var(--paper);
+  }
+  .arrival .ico svg{width:26px;height:26px}
+  .arrival .where{
+    font-family:"Alfa Slab One", serif;
+    font-size:30px;
+    line-height:1;
+  }
+  .arrival .addr{
+    font-family:"DM Mono", monospace;
+    font-size:12px;
+    letter-spacing:.22em;
+    color:var(--ink-2);
+    text-transform:uppercase;
+    margin-top:8px;
+  }
+  .arrival .stars{
+    margin-top:14px;
+    display:flex;justify-content:center;gap:10px;color:var(--brick);
+    font-size:14px;
+    letter-spacing:.3em;
+    font-family:"DM Mono", monospace;
+  }
+
+  /* movers handoff */
+  .handoff{
+    padding:22px 24px;
+    border-bottom:1px solid rgba(31,26,23,.18);
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+  }
+  .handoff .col{display:flex;align-items:flex-start;gap:14px}
+  .handoff .marker{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    display:grid;place-items:center;
+    flex:0 0 40px;
+  }
+  .handoff .marker svg{width:20px;height:20px;color:var(--ink)}
+  .handoff .kicker{
+    font-family:"DM Mono", monospace;
+    font-size:10px;
+    letter-spacing:.24em;
+    color:var(--brick);
+    text-transform:uppercase;
+  }
+  .handoff .place{
+    font-family:"Alfa Slab One", serif;
+    font-size:18px;
     margin-top:3px;
     line-height:1.1;
   }
-  .note .addr{
-    font-family:"DM Sans", sans-serif;font-weight:500;
-    font-size:10px;color:var(--ink-2);margin-top:3px;
-    line-height:1.3;
-    letter-spacing:.005em;
-  }
-  .note .desc{
-    font-family:"DM Sans", sans-serif;font-weight:400;
-    font-size:9.5px;color:var(--ink-2);margin-top:2px;
-    line-height:1.3;
+  .handoff .addr{
+    font-family:"DM Sans", sans-serif;
+    font-weight:500;
+    font-size:13px;
+    color:var(--ink-2);
+    margin-top:4px;
   }
 
-  /* day 4 split: 2 stacked notes inside note cell */
-  .note-split{
-    padding:7px 12px;
-    background:var(--paper-2);
-    display:flex;flex-direction:column;justify-content:center;gap:7px;
-    min-width:0;
-  }
-  .note-split .row{display:flex;align-items:center;gap:10px}
-  .note-split .ico{
-    flex:0 0 26px;width:26px;height:26px;border-radius:50%;
-    background:#fff;border:1.5px solid var(--ink);
-    display:grid;place-items:center;
-  }
-  .note-split .ico svg{width:14px;height:14px;color:var(--ink)}
-  .note-split .ico.pin{background:var(--brick);color:var(--paper);border-color:var(--ink)}
-  .note-split .ico.pin svg{color:var(--paper)}
-  .note-split .kicker{font-family:"DM Mono", monospace;font-size:8px;letter-spacing:.22em;color:var(--brick);text-transform:uppercase;line-height:1}
-  .note-split .name{font-family:"Alfa Slab One", serif;font-size:11px;margin-top:2px;line-height:1.05}
-  .note-split .addr{font-family:"DM Sans", sans-serif;font-weight:500;font-size:9.5px;color:var(--ink-2);margin-top:2px;line-height:1.25}
-
-  /* Day 5 simplified */
-  .day.arrived{grid-template-columns: 64px 1fr;}
-  .day.arrived .celebrate{
-    padding:10px 16px;
-    display:flex;align-items:center;justify-content:space-between;gap:14px;
-    background:var(--paper);
-  }
-  .day.arrived .celebrate .lead{display:flex;align-items:center;gap:12px}
-  .day.arrived .pin-ico{
-    width:36px;height:36px;border-radius:50%;
-    background:var(--brick);color:#fff;border:1.5px solid var(--ink);
-    display:grid;place-items:center;
-  }
-  .day.arrived .pin-ico svg{width:18px;height:18px}
-  .day.arrived .where{
-    font-family:"Alfa Slab One", serif;font-size:18px;line-height:1;
-  }
-  .day.arrived .addr{
-    font-family:"DM Mono", monospace;font-size:10px;letter-spacing:.18em;color:var(--ink-2);text-transform:uppercase;margin-top:4px;
-  }
-  .day.arrived .stars{
-    font-family:"DM Mono", monospace;font-size:14px;letter-spacing:.18em;color:var(--brick);
-    white-space:nowrap;flex:0 0 auto;
-  }
-
-  /* ===== Colophon ===== */
+  /* ===== Footer ===== */
   .colophon{
-    margin-top:10px;
-    padding-top:8px;
-    border-top:2.5px double var(--ink);
+    margin-top:48px;
+    padding-top:24px;
+    border-top:3px double var(--ink);
     display:flex;justify-content:space-between;align-items:center;
     font-family:"DM Mono", monospace;
-    font-size:8px;
+    font-size:11px;
     letter-spacing:.22em;
     color:var(--ink-2);
     text-transform:uppercase;
-    flex:0 0 auto;
   }
   .colophon .seal{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:4px 8px;border:1px solid var(--ink);color:var(--ink);
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;
+    border:1px solid var(--ink);
+    color:var(--ink);
   }
-  .colophon .seal .star{width:6px;height:6px;background:var(--brick);transform:rotate(45deg)}
+  .colophon .seal .star{width:8px;height:8px;background:var(--brick);transform:rotate(45deg)}
+
+  /* ticks */
+  .ticks{
+    margin:8px 0 4px;
+    display:flex;justify-content:space-between;
+    color:rgba(31,26,23,.4);
+    font-family:"DM Mono", monospace;
+    font-size:9px;letter-spacing:.18em;
+  }
+  .ticks span{white-space:nowrap}
 
   /* ===== Print ===== */
-  @page { size: Letter portrait; margin: 0; }
+  @page { size: Letter portrait; margin: 0.4in; }
   @media print{
     html,body{background:#fff !important}
-    body{padding:0;display:block}
-    .page{
-      width:8.5in;height:11in;
+    body{padding:0}
+    .poster{
+      max-width:none;
       border:none;
+      padding:0;
       box-shadow:none;
-      padding:0.4in 0.5in 0.35in;
     }
-    .page::after{inset:0.13in}
+    .poster::after{display:none}
+    .day, .note, .arrival, .handoff, .leg{
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    .badge{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
     *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
 </style>
 </head>
 <body>
 
-<article class="page" data-screen-label="01 One-Page Itinerary">
+<article class="poster" data-screen-label="01 Itinerary">
 
   <!-- ===== Masthead ===== -->
   <header class="masthead">
@@ -353,11 +519,12 @@
   <!-- ===== Route map ===== -->
   <section class="routemap" aria-label="Route map">
     <div class="road">
-      <svg class="path" viewBox="0 0 1000 38" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M 64 18 C 130 4, 216 4, 282 18 C 348 32, 434 32, 500 18 C 566 4, 652 4, 718 18 C 784 32, 870 32, 936 18"
-              fill="none" stroke="#1f1a17" stroke-width="2.5"/>
-        <path d="M 64 18 C 130 4, 216 4, 282 18 C 348 32, 434 32, 500 18 C 566 4, 652 4, 718 18 C 784 32, 870 32, 936 18"
-              fill="none" stroke="#ffffff" stroke-width="0.9" stroke-dasharray="5 6"/>
+      <svg class="path" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
+        <!-- wavy highway that passes through each stop dot at x = 64, 282, 500, 718, 936 (y=25) -->
+        <path d="M 64 25 C 130 5, 216 5, 282 25 C 348 45, 434 45, 500 25 C 566 5, 652 5, 718 25 C 784 45, 870 45, 936 25"
+              fill="none" stroke="#1f1a17" stroke-width="3"/>
+        <path d="M 64 25 C 130 5, 216 5, 282 25 C 348 45, 434 45, 500 25 C 566 5, 652 5, 718 25 C 784 45, 870 45, 936 25"
+              fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="6 8"/>
       </svg>
     </div>
     <div class="stops">
@@ -392,88 +559,171 @@
         <div class="date">Mon · 5/25</div>
       </div>
     </div>
+    <div class="ticks">
+      <span>0 MI</span><span>786</span><span>1,336</span><span>1,712</span><span>1,736 MI</span>
+    </div>
   </section>
 
-  <!-- ===== Day rows ===== -->
+  <!-- ===== Day Cards ===== -->
   <section class="days">
 
     <!-- DAY 1 -->
     <article class="day">
-      <div class="badge">
-        <div class="day-num">22</div>
-        <div class="day-mo">FRI</div>
-      </div>
       <div class="day-head">
-        <div class="dow">Day 1 · Departure</div>
-        <h2>The Mile-High Goodbye</h2>
-        <div class="stat"><b>786 MI</b>· 13 HRS</div>
-      </div>
-      <div class="leg">
-        <div class="route">
-          <span class="truck">
-            <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="34" height="18" rx="1.5"/>
-              <path d="M36 12 H50 L60 19 V24 H36 Z"/>
-              <circle cx="14" cy="26" r="4" fill="#fff"/>
-              <circle cx="48" cy="26" r="4" fill="#fff"/>
-            </svg>
-          </span>
-          <span>Denver</span><span class="arrow">→</span><span>Iowa City</span>
+        <div class="badge">
+          <div class="day-num">22</div>
+          <div class="day-mo">May · Fri</div>
         </div>
-        <div class="times">DEPART 6–7 AM · ARRIVE 7–8 PM</div>
-        <div class="via">VIA <span class="shield">I-76</span> E → <span class="shield">I-80</span> E</div>
+        <div class="head-main">
+          <div class="head-left">
+            <div class="dow">Day One · Departure</div>
+            <h2>The Mile-High Goodbye</h2>
+          </div>
+          <div class="head-right">
+            <strong>786 MI</strong>
+            13 hrs on the road
+          </div>
+        </div>
       </div>
+
+      <div class="leg">
+        <div class="endpoint">
+          <div class="marker">
+            <!-- start dot -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#b8361f" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Depart · 6–7 AM</div>
+            <div class="place">Denver, CO</div>
+            <div class="sub">Mile 0</div>
+          </div>
+        </div>
+
+        <div class="leg-mid">
+          <div class="leg-line">
+            <div class="truck">
+              <!-- truck icon -->
+              <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="34" height="18" rx="1.5"/>
+                <path d="M36 12 H50 L60 19 V24 H36 Z"/>
+                <circle cx="14" cy="26" r="4" fill="#f5ead4"/>
+                <circle cx="48" cy="26" r="4" fill="#f5ead4"/>
+                <path d="M40 14 H49 L56 19 H40 Z" fill="#b8361f" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="leg-stat">
+            <span>786 MI</span><span class="pipe">·</span><span>≈ 13 HRS</span>
+          </div>
+          <div class="leg-route">
+            VIA <span class="shield">I-76</span> EAST <span style="color:var(--brick)">→</span> <span class="shield">I-80</span> EAST
+          </div>
+        </div>
+
+        <div class="endpoint right">
+          <div class="marker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#f5ead4" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Arrive · 7–8 PM</div>
+            <div class="place">Iowa City, IA</div>
+            <div class="sub">Mile 786</div>
+          </div>
+        </div>
+      </div>
+
       <div class="note">
         <div class="ico">
+          <!-- bed icon -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 18 V8 M22 18 V12"/><path d="M2 12 H22 V18"/>
+            <path d="M2 18 V8 M22 18 V12"/>
+            <path d="M2 12 H22 V18"/>
             <path d="M6 12 V10 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v2"/>
           </svg>
         </div>
         <div class="body">
-          <div class="kicker">Friends · Pizza · Night Out</div>
-          <div class="name">College Crew in Tiffin · Out in IC</div>
+          <div class="kicker">Tonight's Stop · Friends &amp; Pizza</div>
+          <div class="name">College Reunion in Tiffin · A Night Out in IC</div>
           <div class="addr">1502 Legend Drive, Tiffin, IA 52340</div>
+          <div class="addr" style="margin-top:8px">Pull in, hug the college crew, meet the babies and the little kids. Then head into Iowa City for some pizza and a proper night out catching up.</div>
         </div>
       </div>
     </article>
 
     <!-- DAY 2 -->
     <article class="day">
-      <div class="badge">
-        <div class="day-num">23</div>
-        <div class="day-mo">SAT</div>
-      </div>
       <div class="day-head">
-        <div class="dow">Day 2 · The Heartland</div>
-        <h2>Cornfields to Cuyahoga</h2>
-        <div class="stat"><b>550 MI</b>· 9.5 HRS</div>
-      </div>
-      <div class="leg">
-        <div class="route">
-          <span class="truck">
-            <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="34" height="18" rx="1.5"/>
-              <path d="M36 12 H50 L60 19 V24 H36 Z"/>
-              <circle cx="14" cy="26" r="4" fill="#fff"/>
-              <circle cx="48" cy="26" r="4" fill="#fff"/>
-            </svg>
-          </span>
-          <span>Iowa City</span><span class="arrow">→</span><span>Cleveland</span>
+        <div class="badge">
+          <div class="day-num">23</div>
+          <div class="day-mo">May · Sat</div>
         </div>
-        <div class="times">DEPART 8 AM · ARRIVE 5–5:30 PM</div>
-        <div class="via">VIA <span class="shield">I-80</span> EAST · STRAIGHT SHOT</div>
+        <div class="head-main">
+          <div class="head-left">
+            <div class="dow">Day Two · Cornfields to Cuyahoga</div>
+            <h2>Across the Heartland</h2>
+          </div>
+          <div class="head-right">
+            <strong>550 MI</strong>
+            9.5 hrs on the road
+          </div>
+        </div>
       </div>
+
+      <div class="leg">
+        <div class="endpoint">
+          <div class="marker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#f5ead4" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Depart · 8 AM</div>
+            <div class="place">Iowa City, IA</div>
+            <div class="sub">Mile 786</div>
+          </div>
+        </div>
+
+        <div class="leg-mid">
+          <div class="leg-line">
+            <div class="truck">
+              <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="34" height="18" rx="1.5"/>
+                <path d="M36 12 H50 L60 19 V24 H36 Z"/>
+                <circle cx="14" cy="26" r="4" fill="#f5ead4"/>
+                <circle cx="48" cy="26" r="4" fill="#f5ead4"/>
+                <path d="M40 14 H49 L56 19 H40 Z" fill="#b8361f" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="leg-stat">
+            <span>550 MI</span><span class="pipe">·</span><span>≈ 9.5 HRS</span>
+          </div>
+          <div class="leg-route">
+            VIA <span class="shield">I-80</span> EAST · STRAIGHT SHOT
+          </div>
+        </div>
+
+        <div class="endpoint right">
+          <div class="marker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#f5ead4" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Arrive · 5–5:30 PM</div>
+            <div class="place">Cleveland, OH</div>
+            <div class="sub">Mile 1,336</div>
+          </div>
+        </div>
+      </div>
+
       <div class="note">
         <div class="ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 18 V8 M22 18 V12"/><path d="M2 12 H22 V18"/>
+            <path d="M2 18 V8 M22 18 V12"/>
+            <path d="M2 12 H22 V18"/>
             <path d="M6 12 V10 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v2"/>
           </svg>
         </div>
         <div class="body">
           <div class="kicker">Tonight's Stop · Check In</div>
-          <div class="name">Hampton Inn &amp; Suites Independence</div>
+          <div class="name">Hampton Inn &amp; Suites Cleveland / Independence</div>
           <div class="addr">6020 Jefferson Dr, Independence, OH 44131</div>
         </div>
       </div>
@@ -481,119 +731,180 @@
 
     <!-- DAY 3 -->
     <article class="day">
-      <div class="badge">
-        <div class="day-num">24</div>
-        <div class="day-mo">SUN</div>
-      </div>
       <div class="day-head">
-        <div class="dow">Day 3 · Into the Northeast</div>
-        <h2>Through the Alleghenies</h2>
-        <div class="stat"><b>400 MI</b>· 7 HRS</div>
-      </div>
-      <div class="leg">
-        <div class="route">
-          <span class="truck">
-            <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="34" height="18" rx="1.5"/>
-              <path d="M36 12 H50 L60 19 V24 H36 Z"/>
-              <circle cx="14" cy="26" r="4" fill="#fff"/>
-              <circle cx="48" cy="26" r="4" fill="#fff"/>
-            </svg>
-          </span>
-          <span>Cleveland</span><span class="arrow">→</span><span>E. Rutherford</span>
+        <div class="badge">
+          <div class="day-num">24</div>
+          <div class="day-mo">May · Sun</div>
         </div>
-        <div class="times">DEPART 8 AM · ARRIVE 3–4 PM</div>
-        <div class="via">VIA <span class="shield">I-80</span> EAST · ALMOST THERE</div>
+        <div class="head-main">
+          <div class="head-left">
+            <div class="dow">Day Three · Into the Northeast</div>
+            <h2>Through the Alleghenies</h2>
+          </div>
+          <div class="head-right">
+            <strong>400 MI</strong>
+            7 hrs on the road
+          </div>
+        </div>
       </div>
+
+      <div class="leg">
+        <div class="endpoint">
+          <div class="marker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#f5ead4" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Depart · 8 AM</div>
+            <div class="place">Cleveland, OH</div>
+            <div class="sub">Mile 1,336</div>
+          </div>
+        </div>
+
+        <div class="leg-mid">
+          <div class="leg-line">
+            <div class="truck">
+              <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="34" height="18" rx="1.5"/>
+                <path d="M36 12 H50 L60 19 V24 H36 Z"/>
+                <circle cx="14" cy="26" r="4" fill="#f5ead4"/>
+                <circle cx="48" cy="26" r="4" fill="#f5ead4"/>
+                <path d="M40 14 H49 L56 19 H40 Z" fill="#b8361f" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="leg-stat">
+            <span>400 MI</span><span class="pipe">·</span><span>≈ 7 HRS</span>
+          </div>
+          <div class="leg-route">
+            VIA <span class="shield">I-80</span> EAST · ALMOST THERE
+          </div>
+        </div>
+
+        <div class="endpoint right">
+          <div class="marker">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" fill="#f5ead4" stroke="#1f1a17"/></svg>
+          </div>
+          <div class="label">
+            <div class="time">Arrive · 3–4 PM</div>
+            <div class="place">East Rutherford, NJ</div>
+            <div class="sub">Mile 1,712</div>
+          </div>
+        </div>
+      </div>
+
       <div class="note">
         <div class="ico">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 18 V8 M22 18 V12"/><path d="M2 12 H22 V18"/>
+            <path d="M2 18 V8 M22 18 V12"/>
+            <path d="M2 12 H22 V18"/>
             <path d="M6 12 V10 a2 2 0 0 1 2-2 h6 a2 2 0 0 1 2 2 v2"/>
           </svg>
         </div>
         <div class="body">
           <div class="kicker">Tonight's Stop · Check In</div>
-          <div class="name">Homewood Suites Meadowlands</div>
+          <div class="name">Homewood Suites by Hilton East Rutherford – Meadowlands</div>
           <div class="addr">125 Route 17 S, East Rutherford, NJ 07073</div>
         </div>
       </div>
     </article>
 
     <!-- DAY 4 -->
-    <article class="day holiday">
-      <div class="badge">
-        <div class="day-num">25</div>
-        <div class="day-mo">MEM DAY</div>
-      </div>
+    <article class="day">
       <div class="day-head">
-        <div class="dow">Day 4 · The Hand-Off</div>
-        <h2>U-Haul Out, Movers In</h2>
-        <div class="stat"><b>~14 MI</b>· ACROSS THE HUDSON</div>
-      </div>
-      <div class="leg">
-        <div class="route">
-          <span class="truck">
-            <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="34" height="18" rx="1.5"/>
-              <path d="M36 12 H50 L60 19 V24 H36 Z"/>
-              <circle cx="14" cy="26" r="4" fill="#fff"/>
-              <circle cx="48" cy="26" r="4" fill="#fff"/>
-            </svg>
-          </span>
-          <span>Drop Truck</span><span class="arrow">→</span><span>Pack &amp; Deliver</span>
+        <div class="badge" style="background:var(--brick); border-color:var(--brick)">
+          <div class="day-num">25</div>
+          <div class="day-mo">Memorial Day</div>
         </div>
-        <div class="times">MORNING DROP · AFTERNOON HAND-OFF</div>
-        <div class="via">U-HAUL DROP · MOVERS TO UWS</div>
+        <div class="head-main">
+          <div class="head-left">
+            <div class="dow">Day Four · The Hand-Off</div>
+            <h2>U-Haul Out, Movers In</h2>
+          </div>
+          <div class="head-right">
+            <strong>~14 MI</strong>
+            Across the Hudson
+          </div>
+        </div>
       </div>
-      <div class="note-split">
-        <div class="row">
-          <div class="ico">
+
+      <div class="handoff">
+        <div class="col">
+          <div class="marker">
+            <!-- truck small -->
             <svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="6" width="34" height="18" rx="1.5"/>
               <path d="M36 12 H50 L60 19 V24 H36 Z"/>
+              <circle cx="14" cy="26" r="4" fill="#f5ead4"/>
+              <circle cx="48" cy="26" r="4" fill="#f5ead4"/>
             </svg>
           </div>
           <div>
-            <div class="kicker">U-Haul Drop</div>
+            <div class="kicker">Morning · Drop the Truck</div>
+            <div class="place">U-Haul Moving &amp; Storage of North Bergen</div>
             <div class="addr">6701 Tonnelle Ave, North Bergen, NJ 07047</div>
           </div>
         </div>
-        <div class="row">
-          <div class="ico pin">
+        <div class="col">
+          <div class="marker">
+            <!-- box icon -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22 C 7 16, 4 13, 4 9 a8 8 0 0 1 16 0 c0 4 -3 7 -8 13 Z" fill="currentColor"/>
-              <circle cx="12" cy="9" r="2.5" fill="#b8361f" stroke="#ffffff"/>
+              <path d="M3 7 L12 3 L21 7 V17 L12 21 L3 17 Z"/>
+              <path d="M3 7 L12 11 L21 7"/>
+              <path d="M12 11 V21"/>
             </svg>
           </div>
           <div>
-            <div class="kicker">Final Destination</div>
-            <div class="addr">60 W 91st St, Upper West Side, Manhattan, NY</div>
+            <div class="kicker">Afternoon · Movers Take Over</div>
+            <div class="place">Pack &amp; Deliver to Manhattan</div>
+            <div class="addr">Final destination: 60 W 91st St, Upper West Side</div>
           </div>
         </div>
+      </div>
+
+      <div class="arrival">
+        <div class="ico">
+          <!-- pin icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22 C 7 16, 4 13, 4 9 a8 8 0 0 1 16 0 c0 4 -3 7 -8 13 Z" fill="currentColor"/>
+            <circle cx="12" cy="9" r="3" fill="#b8361f" stroke="#f5ead4"/>
+          </svg>
+        </div>
+        <div class="where">HOME · UPPER WEST SIDE</div>
+        <div class="addr">60 W 91st Street · Manhattan, New York</div>
+        <div class="stars">★&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;★&nbsp;&nbsp;★</div>
       </div>
     </article>
 
     <!-- DAY 5 -->
-    <article class="day arrived">
-      <div class="badge" style="background:#fff;color:var(--ink);border-right:1px solid var(--ink)">
-        <div class="day-num" style="color:var(--brick)">26</div>
-        <div class="day-mo" style="color:var(--ink-2)">TUE</div>
-      </div>
-      <div class="celebrate">
-        <div class="lead">
-          <div class="pin-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22 C 7 16, 4 13, 4 9 a8 8 0 0 1 16 0 c0 4 -3 7 -8 13 Z" fill="currentColor"/>
-              <circle cx="12" cy="9" r="2.5" fill="#b8361f" stroke="#ffffff"/>
-            </svg>
+    <article class="day">
+      <div class="day-head">
+        <div class="badge" style="background:var(--paper); color:var(--ink); border-right:1px solid var(--ink)">
+          <div class="day-num" style="color:var(--brick)">26</div>
+          <div class="day-mo" style="color:var(--ink-2)">May · Tue</div>
+        </div>
+        <div class="head-main">
+          <div class="head-left">
+            <div class="dow">Day Five · Arrived</div>
+            <h2>Settled in Manhattan</h2>
           </div>
-          <div>
-            <div class="where" style="color:var(--brick)">SETTLED IN MANHATTAN · 🎉</div>
-            <div class="addr">60 W 91st Street · Upper West Side</div>
+          <div class="head-right">
+            <strong>0 MI</strong>
+            The keys are ours
           </div>
         </div>
-        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+      <div class="note" style="background:var(--paper)">
+        <div class="ico" style="background:var(--brick); border-color:var(--ink); color:var(--paper)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22 C 7 16, 4 13, 4 9 a8 8 0 0 1 16 0 c0 4 -3 7 -8 13 Z" fill="currentColor"/>
+            <circle cx="12" cy="9" r="3" fill="#b8361f" stroke="#f5ead4"/>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="kicker">You Made It</div>
+          <div class="name" style="color:var(--brick)">Welcome Home, New Yorkers 🎉</div>
+          <div class="addr">Unpack the essentials. Order from the corner deli. Walk to Central Park before the boxes win.</div>
+        </div>
       </div>
     </article>
 
@@ -605,7 +916,7 @@
       <span class="star"></span>
       <span>Est. 5/22/2026</span>
     </div>
-    <div>DEN · IC · CLE · EWR · NYC</div>
+    <div>Denver · Iowa City · Cleveland · East Rutherford · NYC</div>
     <div class="seal">
       <span>Drive Safe</span>
       <span class="star"></span>
